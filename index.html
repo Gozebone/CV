@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="./style/index.css"></link>
+
+    <!-- Variables -->
+    <script src="./scripts/variables.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
+    <div id="root"></div>
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.scripts" with "production.min.scripts". -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Load our React component. -->
+    <script src="./reactScripts/js/planetsComponents/Eat2EatPlanet.js"></script>
+    <script src="./reactScripts/js/index.js"></script>
+
+    <!-- Motion -->
+    <script src="./scripts/motion.js"></script>
+
 
 </body>
 </html>

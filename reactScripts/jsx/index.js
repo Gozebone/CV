@@ -1,40 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import Eat2EatPlanet from './planetsComponents/Eat2EatPlanet';
+'use strict';
 
 class Planet extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            vertical: 0,
-            scale: 1
-        };
     }
 
     render() {
         return (
-            <Eat2EatPlanet style={{
-                width: '1040', height: '1040', position: 'fixed',
-                left: '50%',  top: this.props.value,
-                transform: `translate(-50%, ${this.state.vertical}) scale(${this.state.scale})`,
-                transformOrigin: 'top center'
+            <SvgEat2EatPlanet style={{
+                width: '1040', aspectRatio: '1', position: 'fixed',
+                left: '50%',  top: "0",
+                transform: `translate(-50%, ${this.props.pos}px) scale(${this.props.scale})`,
+                transformOrigin: 'top center',
             }}/>
         );
     }
 }
 
 class System extends React.Component {
-    renderPlanet(vars) {
+    renderPlanet(key, scale, pos) {
         return (
-            <Planet value={vars} />
+            <Planet key={key} scale={scale} pos={pos}/>
         )
     }
+
     render() {
         return ([
-                this.renderPlanet("0"),
-                this.renderPlanet("0"),
-                this.renderPlanet("0")
+                this.renderPlanet(1,3*(scaleDelta),600*(positionDelta)),
+                this.renderPlanet(2,3,600),
+                this.renderPlanet(3, 3/(scaleDelta),600/(positionDelta))
             ]);
     }
 }

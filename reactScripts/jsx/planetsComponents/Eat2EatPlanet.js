@@ -1,8 +1,9 @@
-import * as React from "react";
+'use strict';
 
 const SvgEat2EatPlanet = (props) => (
   <svg
-    id="eat2eat_planet_svg__b8e4dbf3-839f-413c-863b-4f8b860f203c"
+    id="eat2eat_planet_svg"
+    className="planet"
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
@@ -71,4 +72,3 @@ const SvgEat2EatPlanet = (props) => (
   </svg>
 );
 
-export default SvgEat2EatPlanet;
