@@ -11,8 +11,6 @@ const planets = [
     SvgEat2EatPlanet
 ]
 
-var mask = [2, 3, 4, 5, 6]
-
 class Planet extends React.Component {
     constructor(props) {
         super(props);
