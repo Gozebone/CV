@@ -70,9 +70,12 @@ class System extends React.Component {
     }
 
     render() {
-        return planets.map((planet, index) => (
-            this.renderPlanet(planet, index, 3, 600)
-        ))
+        return planets.map((planet, index) => {
+            if (index in mask) {
+                return this.renderPlanet(planet, index, mask[index].scale, mask[index].pos)
+            }
+            return this.renderPlanet(planet, index, 3, 600)
+        })
     }
 }
 
