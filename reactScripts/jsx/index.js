@@ -71,10 +71,13 @@ class System extends React.Component {
 
     render() {
         return planets.map((planet, index) => {
-            if (index in mask) {
+            var minimal = Object.keys(mask)[0], maximum = Object.keys(mask)[4]
+            if (index <= minimal) {
+                return this.renderPlanet(planet, index, mask[minimal].scale, mask[minimal].pos)
+            } else if (index < maximum) {
                 return this.renderPlanet(planet, index, mask[index].scale, mask[index].pos)
             }
-            return this.renderPlanet(planet, index, 3, 600)
+            return this.renderPlanet(planet, index, mask[maximum].scale, mask[maximum].pos)
         })
     }
 }
