@@ -1,4 +1,4 @@
-var mask = {
+let mask = {
     2: {scale: 0, pos: 0},
     3: {scale: 0.02, pos: 4},
     4: {scale: 0.2, pos: 40},
