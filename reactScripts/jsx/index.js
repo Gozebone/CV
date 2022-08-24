@@ -18,14 +18,39 @@ class Planet extends React.Component {
             PlanetScale: 3,
             PlanetPosition: 600,
         };
-        this.delta;
+    }
+
+    render() {
+        return <this.props.planet id={this.props.id} style={{
+                width: '1040', aspectRatio: '1', position: 'fixed',
+                left: '50%',  top: "0",
+                transform: `translate(-50%, ${this.props.pos}px) scale(${this.props.scale})`,
+                transformOrigin: 'top center',
+        }}/>
+    }
+}
+
+class System extends React.Component {
+    constructor() {
+        super();
+        this.delta = 0;
+    }
+    renderPlanet(planet, key, scale, pos) {
+        return (
+            <Planet planet={planet} id={key} key={key} scale={scale} pos={pos}/>
+        )
     }
 
     componentDidMount() {
         $(document).ready(function () {
             $(document).bind('mousewheel', function (e) {
                 this.delta = e.originalEvent.wheelDelta;
-                this.setState({PlanetScale: 4})
+                if (this.delta < 0){
+                    mask = increaseKeys(mask)
+                } else if (this.delta > 0) {
+                    mask = decreaseKeys(mask)
+                }
+                console.log(mask)
             }.bind(this));
         }.bind(this));
     }
@@ -50,23 +75,6 @@ class Planet extends React.Component {
                 duration: 0
             })
         }
-    }
-
-    render() {
-        return <this.props.planet id={this.props.id} style={{
-                width: '1040', aspectRatio: '1', position: 'fixed',
-                left: '50%',  top: "0",
-                transform: `translate(-50%, ${this.props.pos}px) scale(${this.props.scale})`,
-                transformOrigin: 'top center',
-        }}/>
-    }
-}
-
-class System extends React.Component {
-    renderPlanet(planet, key, scale, pos) {
-        return (
-            <Planet planet={planet} id={key} key={key} scale={scale} pos={pos}/>
-        )
     }
 
     render() {
