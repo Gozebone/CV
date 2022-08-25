@@ -34,6 +34,15 @@ class System extends React.Component {
     constructor() {
         super();
         this.delta = 0;
+        this.state = {
+            mask: {
+                2: {scale: 0, pos: 0},
+                3: {scale: 0.02, pos: 4},
+                4: {scale: 0.2, pos: 40},
+                5: {scale: 3, pos: 600},
+                6: {scale: 15, pos: 3000}
+            }
+        }
     }
     renderPlanet(planet, key, scale, pos) {
         return (
@@ -46,11 +55,11 @@ class System extends React.Component {
             $(document).bind('mousewheel', function (e) {
                 this.delta = e.originalEvent.wheelDelta;
                 if (this.delta < 0){
-                    mask = increaseKeys(mask)
+                    this.setState({mask: increaseKeys(this.state.mask)})
                 } else if (this.delta > 0) {
-                    mask = decreaseKeys(mask)
+                    this.setState({mask: decreaseKeys(this.state.mask)})
                 }
-                console.log(mask)
+                console.log(this.state.mask)
             }.bind(this));
         }.bind(this));
     }
@@ -79,13 +88,13 @@ class System extends React.Component {
 
     render() {
         return planets.map((planet, index) => {
-            const minimal = Object.keys(mask)[0], maximum = Object.keys(mask)[4]
+            const minimal = Object.keys(this.state.mask)[0], maximum = Object.keys(this.state.mask)[4]
             if (index <= minimal) {
-                return this.renderPlanet(planet, index, mask[minimal].scale, mask[minimal].pos)
+                return this.renderPlanet(planet, index, this.state.mask[minimal].scale, this.state.mask[minimal].pos)
             } else if (index < maximum) {
-                return this.renderPlanet(planet, index, mask[index].scale, mask[index].pos)
+                return this.renderPlanet(planet, index, this.state.mask[index].scale, this.state.mask[index].pos)
             }
-            return this.renderPlanet(planet, index, mask[maximum].scale, mask[maximum].pos)
+            return this.renderPlanet(planet, index, this.state.mask[maximum].scale, this.state.mask[maximum].pos)
         })
     }
 }
