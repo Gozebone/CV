@@ -33,7 +33,6 @@ class Planet extends React.Component {
 class System extends React.Component {
     constructor() {
         super();
-        this.delta = 0;
         this.state = {
             mask: {
                 2: {scale: 0, pos: 0},
@@ -43,6 +42,7 @@ class System extends React.Component {
                 6: {scale: 15, pos: 3000}
             }
         }
+        this.ref = React.createRef([])
     }
     renderPlanet(planet, key, scale, pos) {
         return (
@@ -53,11 +53,11 @@ class System extends React.Component {
     componentDidMount() {
         $(document).ready(function () {
             $(document).bind('mousewheel', function (e) {
-                this.delta = e.originalEvent.wheelDelta;
-                if (this.delta < 0){
-                    this.setState({mask: increaseKeys(this.state.mask)})
-                } else if (this.delta > 0) {
+                let delta = e.originalEvent.wheelDelta;
+                if (delta < 0){
                     this.setState({mask: decreaseKeys(this.state.mask)})
+                } else if (delta > 0) {
+                    this.setState({mask: increaseKeys(this.state.mask)})
                 }
                 console.log(this.state.mask)
             }.bind(this));
@@ -65,25 +65,15 @@ class System extends React.Component {
     }
 
     componentDidUpdate() {
-        const tl = gsap.timeline();
-        const id = this.props.id
-        if (this.delta > 0) {
-            //go up
-            gsap.to(q(`#${id}`), {
-                scaleY: "*=" + scaleDelta,
-                scaleX: "*=" + scaleDelta,
-                y: "*=" + positionDelta,
-                duration: 0
-            })
-        } else {
-            //go down
-            gsap.to(q(`#${id}`), {
-                scaleY: "/=" + scaleDelta,
-                scaleX: "/=" + scaleDelta,
-                y: "/=" + positionDelta,
-                duration: 0
-            })
-        }
+        // for (let key in Object.keys(this.state.mask)){
+        //     gsap.to(this.ref.current[key], {
+        //         duration:1,
+        //         y: this.state.mask[key].position,
+        //         scaleX: this.state.mask[key].scale,
+        //         scaleY: this.state.mask[key].scale
+        //     })
+        // }
+        console.log("triggered")
     }
 
     render() {
