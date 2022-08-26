@@ -24,7 +24,7 @@ class Planet extends React.Component {
         return <this.props.planet id={this.props.id} style={{
                 width: '1040', aspectRatio: '1', position: 'fixed',
                 left: '50%',  top: "0",
-                transform: `translate(-50%, ${this.props.pos}px) scale(${this.props.scale})`,
+                transform: `translate3d(-50%, ${this.props.pos}px, ${this.props.pos}px) scale(${this.props.scale})`,
                 transformOrigin: 'top center',
         }}/>
     }
@@ -34,6 +34,7 @@ class System extends React.Component {
     constructor() {
         super();
         this.state = {
+            offset: 0,
             mask: {
                 2: {scale: 0, pos: 0},
                 3: {scale: 0.02, pos: 4},
