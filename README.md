@@ -23,3 +23,5 @@ After installation, you will have 2 node modules in your directory: babel-cli an
 npx babel --watch reactScripts/jsx --out-dir reactScripts/js --presets react-app/prod
 ```
 
+Math explained
+--------------
